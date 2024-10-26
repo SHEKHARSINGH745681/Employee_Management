@@ -1,32 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\projects\\EmployeeAdminPortal\\EmployeeAdminPortal\\EmployeeAdminPortal.csproj": {}
+    "/Users/shekharsingh/Projects/EM/EmployeeAdminPortal.csproj": {}
   },
   "projects": {
-    "D:\\projects\\EmployeeAdminPortal\\EmployeeAdminPortal\\EmployeeAdminPortal.csproj": {
+    "/Users/shekharsingh/Projects/EM/EmployeeAdminPortal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\projects\\EmployeeAdminPortal\\EmployeeAdminPortal\\EmployeeAdminPortal.csproj",
+        "projectUniqueName": "/Users/shekharsingh/Projects/EM/EmployeeAdminPortal.csproj",
         "projectName": "EmployeeAdminPortal",
-        "projectPath": "D:\\projects\\EmployeeAdminPortal\\EmployeeAdminPortal\\EmployeeAdminPortal.csproj",
-        "packagesPath": "C:\\Users\\Test\\.nuget\\packages\\",
-        "outputPath": "D:\\projects\\EmployeeAdminPortal\\EmployeeAdminPortal\\obj\\",
+        "projectPath": "/Users/shekharsingh/Projects/EM/EmployeeAdminPortal.csproj",
+        "packagesPath": "/Users/shekharsingh/.nuget/packages/",
+        "outputPath": "/Users/shekharsingh/Projects/EM/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Test\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/shekharsingh/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -56,17 +49,13 @@
               "target": "Package",
               "version": "[8.0.10, )"
             },
-            "Npgsql": {
-              "target": "Package",
-              "version": "[8.0.5, )"
-            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[8.0.10, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.6.2, )"
+              "version": "[6.9.0, )"
             }
           },
           "imports": [
@@ -88,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -29,9 +29,6 @@ namespace EmployeeAdminPortal.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Dep_Id")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
@@ -49,46 +46,7 @@ namespace EmployeeAdminPortal.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Dep_Id");
-
                     b.ToTable("Employees");
-                });
-
-            modelBuilder.Entity("EmployeeAdminPortal.Models.Entities.Department", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("BloodGroup")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Experience")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Position")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Departments", (string)null);
-                });
-
-            modelBuilder.Entity("EmployeeAdminPortal.Moddels.Entities.Employee", b =>
-                {
-                    b.HasOne("EmployeeAdminPortal.Models.Entities.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("Dep_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Department");
                 });
 #pragma warning restore 612, 618
         }

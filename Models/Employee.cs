@@ -1,11 +1,14 @@
-﻿namespace EmployeeAdminPortal.Moddels
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace EmployeeAdminPortal.Moddels.Entities
 {
-    public class UpdateEmployeeDto
+    public class Employee
     {
+        public int Id { get; set; }
         public required string Name { get; set; }
         public required string Email { get; set; }
         public required string Phone { get; set; }
         public decimal Salary { get; set; }
+
     }
 }
-
