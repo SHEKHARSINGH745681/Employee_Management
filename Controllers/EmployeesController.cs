@@ -28,6 +28,18 @@ namespace EmployeeAdminPortal.Controllers
             return Ok(employees);
         }
 
+
+        // GET: api/employees/export
+        [HttpGet("export")]
+        public async Task<IActionResult> ExportEmployeesToExcel()
+        {
+            // Delegate the Excel generation to the repository
+            var fileContent = await _empRepo.ExportEmployeesToExcelAsync();
+
+            // Return the Excel file as a downloadable response
+            return File(fileContent, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Employees.xlsx");
+        }
+
         // GET: api/employees/{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEmployeeById(int id)

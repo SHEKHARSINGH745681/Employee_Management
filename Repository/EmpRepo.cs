@@ -16,6 +16,7 @@ namespace EmployeeAdminPortal.Repository
 
         // Deletes an employee by ID asynchronously
         Task<bool> DeleteEmployeeAsync(int id);
+        Task<byte[]> ExportEmployeesToExcelAsync();
     }
 }
 
