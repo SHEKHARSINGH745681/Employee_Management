@@ -16,7 +16,17 @@ namespace EmployeeAdminPortal.Data
 
         public DbSet<Department> Departments { get; set; }
 
+       // public DbSet<Students> Students { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Configure one-to-many relationship between Department and Employee
+            modelBuilder.Entity<Employee>()
+                .HasOne(e => e.Department)
+                .WithMany(d => d.Employees)
+                .HasForeignKey(e => e.DepartmentId)
+                .OnDelete(DeleteBehavior.Cascade); 
+        }
 
     }
 

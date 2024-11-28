@@ -10,6 +10,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "EmployeeAdminPortal.Controllers.DepartmentController",
+    "Method": "AddDepartments",
+    "RelativePath": "Api/Department",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "department",
+        "Type": "EmployeeAdminPortal.Models.Department",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "EmployeeAdminPortal.Controllers.EmployeesController",
     "Method": "GetAllEmployees",
     "RelativePath": "api/Employees",

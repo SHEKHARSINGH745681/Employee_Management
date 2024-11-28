@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using EmployeeAdminPortal.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmployeeAdminPortal.Moddels.Entities
 {
@@ -9,6 +10,16 @@ namespace EmployeeAdminPortal.Moddels.Entities
         public required string Email { get; set; }
         public required string Phone { get; set; }
         public decimal Salary { get; set; }
+        public string? Lastname { get; set; }
+
+
+
+
+        public int DepartmentId { get; set; }
+
+        // Navigation Property: Many Employees belong to one Department
+        [ForeignKey(nameof(DepartmentId))]
+        public Department? Department { get; set; } 
 
     }
 }
