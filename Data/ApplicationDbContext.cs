@@ -24,8 +24,7 @@ namespace EmployeeAdminPortal.Data
             modelBuilder.Entity<Employee>()
                 .HasOne(e => e.Department)
                 .WithMany(d => d.Employees)
-                .HasForeignKey(e => e.DepartmentId)
-                .OnDelete(DeleteBehavior.Cascade); 
+                .HasForeignKey(e => e.DepartmentId);
         }
 
     }
