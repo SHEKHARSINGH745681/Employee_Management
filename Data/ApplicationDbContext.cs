@@ -13,11 +13,10 @@ namespace EmployeeAdminPortal.Data
 
         }
         public DbSet<Employee> Employees { get; set; }
-
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Dispatch> Dispatchs { get; set; }
 
-       // public DbSet<Students> Students { get; set; }
-
+       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Configure one-to-many relationship between Department and Employee

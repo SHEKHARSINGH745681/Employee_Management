@@ -13,13 +13,8 @@ namespace EmployeeAdminPortal.Moddels.Entities
         public string? Lastname { get; set; }
         public int DepartmentId { get; set; }
 
-
-
-
-
-
-
         [ForeignKey(nameof(DepartmentId))]
+
         public Department? Department { get; set; } 
 
     }

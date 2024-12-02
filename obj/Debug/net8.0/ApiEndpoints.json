@@ -26,6 +26,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "EmployeeAdminPortal.Controllers.DispatchController",
+    "Method": "AddDispatchAsync",
+    "RelativePath": "api/Dispatch/Add-Dispatch",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dispatch",
+        "Type": "EmployeeAdminPortal.Models.Dispatch",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmployeeAdminPortal.Controllers.DispatchController",
+    "Method": "ExportDispatchToExcel",
+    "RelativePath": "api/Dispatch/Export",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "EmployeeAdminPortal.Controllers.EmployeesController",
     "Method": "GetAllEmployees",
     "RelativePath": "api/Employees",
@@ -84,9 +110,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "EmployeeAdminPortal.Controllers.EmployeesController",
+    "ContainingType": "EmployeeAdminPortal.Controllers.ExcelExportController",
     "Method": "ExportEmployeesToExcel",
-    "RelativePath": "api/Employees/export",
+    "RelativePath": "api/ExcelExport/export",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

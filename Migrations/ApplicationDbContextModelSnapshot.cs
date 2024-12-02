@@ -82,7 +82,7 @@ namespace EmployeeAdminPortal.Migrations
                     b.ToTable("Departments");
                 });
 
-            modelBuilder.Entity("EmployeeAdminPortal.Models.Students", b =>
+            modelBuilder.Entity("EmployeeAdminPortal.Models.Dispatch", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -90,9 +90,42 @@ namespace EmployeeAdminPortal.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("BagCount")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Branch")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Company")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DispatchDate")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DispatchStatus")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DriverName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DriverNumber")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FPC")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Fedration")
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("NetWeight")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("TruckNumber")
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Students");
+                    b.ToTable("Dispatchs");
                 });
 
             modelBuilder.Entity("EmployeeAdminPortal.Moddels.Entities.Employee", b =>

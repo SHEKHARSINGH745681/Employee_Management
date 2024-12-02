@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EmployeeAdminPortal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241128045828_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241202102533_Add")]
+    partial class Add
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,6 +37,9 @@ namespace EmployeeAdminPortal.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Lastname")
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
@@ -80,6 +83,52 @@ namespace EmployeeAdminPortal.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Departments");
+                });
+
+            modelBuilder.Entity("EmployeeAdminPortal.Models.Dispatch", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("BagCount")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Branch")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Company")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DispatchDate")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DispatchStatus")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DriverName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DriverNumber")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FPC")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Fedration")
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("NetWeight")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("TruckNumber")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Dispatchs");
                 });
 
             modelBuilder.Entity("EmployeeAdminPortal.Moddels.Entities.Employee", b =>
