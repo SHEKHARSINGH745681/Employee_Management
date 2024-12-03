@@ -2,6 +2,7 @@
 using EmployeeAdminPortal.Data;
 using EmployeeAdminPortal.DTO;
 using EmployeeAdminPortal.Models.Entity;
+using EmployeeAdminPortal.RTO;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeAdminPortal.Repository.CrudRepo
@@ -35,34 +36,28 @@ namespace EmployeeAdminPortal.Repository.CrudRepo
             return farmer;
         }
 
-        public async Task<IEnumerable<Farmer>> GetFarmerAsync()
+        public async Task<IEnumerable<FarmerRTO>> GetFarmerAsync()
         {
-            //var farmers = await _dbContext.farmers.Include(f => f.Address).ToListAsync();
-            //public async Task<IEnumerable<FarmerDTO>> GetFarmerAsync()
-            //{
-                var farmers = await _dbContext.Farmers
-                    .Include(f => f.Address) // Ensure the Address navigation property is included
-                    .Select(f => new FarmerDTO // Project Farmer entity to FarmerDTO
+            var farmers = await _dbContext.Set<Farmer>() 
+                .Include(f => f.Address) 
+                .Select(f => new FarmerRTO
+                {
+                    FirstName = f.FirstName,
+                    LastName = f.LastName,
+                    Address = new RTO.AddressRTO
                     {
-                        FirstName = f.FirstName,
-                        LastName = f.LastName,
-                        Address = new AddressDTO
-                        {
-                            Village = f.Address.Village,
-                            City = f.Address.City,
-                            PostalCode = f.Address.PostalCode
-                            // Uncomment and include other properties as needed
-                            // Country = f.Address.Country,
-                            // Phone = f.Address.Phone
-                        }
-                    })
-                    .ToListAsync();
+                        Village = f.Address.Village,
+                        City = f.Address.City,
+                        PostalCode = f.Address.PostalCode
+                    }
+                })
+                .ToListAsync();
 
-                return farmers;
-            }
+
 
             return farmers;
         }
+
 
     }
 }

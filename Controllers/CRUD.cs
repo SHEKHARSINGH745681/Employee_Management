@@ -18,6 +18,9 @@ namespace EmployeeAdminPortal.Controllers
             _crudRepo = crudRepo;
         }
 
+
+
+
         [HttpGet]
         [Route("/farmer")]
         public async Task<IActionResult> GetAllFarmer()
@@ -25,21 +28,6 @@ namespace EmployeeAdminPortal.Controllers
             var farmers = await _crudRepo.GetFarmerAsync();
             return Ok(farmers);
         }
-
-        //[HttpPost]
-        //[Route("/farmer")]
-        //public async Task<IActionResult> CreateFarmer([FromBody] Farmer farmer)
-        //{
-        //    //if (farmer == null || farmer.Address == null)
-        //    //{
-        //    //    return BadRequest("Farmer and Address data must be provided.");
-        //    //}
-
-        //    var createdFarmer = await _crudRepo.CreateFarmerAsync(farmer);
-
-        //    return CreatedAtAction(nameof(GetAllFarmer), new { id = createdFarmer.Id }, createdFarmer);
-            
-        //}
 
 
         [HttpPost]
@@ -62,9 +50,6 @@ namespace EmployeeAdminPortal.Controllers
             };
 
             var createdFarmer = await _crudRepo.CreateFarmerAsync(farmer);
-
-
-
             return Ok(new { message = "Farmer Create SucessFully" });
 
         }
