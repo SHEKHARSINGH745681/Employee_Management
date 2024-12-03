@@ -1,6 +1,7 @@
 using EmployeeAdminPortal.Data;
 using EmployeeAdminPortal.IRepo;
 using EmployeeAdminPortal.Repository;
+using EmployeeAdminPortal.Repository.CrudRepo;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,8 +13,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-
 //this way application db context in the main file
 builder.Services.AddDbContext<ApplicationDbContext>(options => 
 options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -21,6 +20,8 @@ options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")
 builder.Services.AddScoped<EmpRepo, RepositoryImpl>();
 builder.Services.AddScoped<IDepRepo, DepRepo>();
 builder.Services.AddScoped<IDispatchRepo, DispatchRepoImpl>();
+
+builder.Services.AddScoped<CrudRepo, CrudRepoImpl>();
 
 var app = builder.Build();
 

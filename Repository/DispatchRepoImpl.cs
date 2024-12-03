@@ -16,8 +16,7 @@ namespace EmployeeAdminPortal.Repository
         {
             _dbContext = dbContext;
         }
-
-        public async Task<Dispatch> AddDispatchAsync(Dispatch dispatch)
+       public async Task<Dispatch> AddDispatchAsync(Dispatch dispatch)
         {
             _dbContext.Dispatchs.Add(dispatch);
             await _dbContext.SaveChangesAsync();
