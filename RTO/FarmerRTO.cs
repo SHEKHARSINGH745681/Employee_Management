@@ -5,7 +5,9 @@ namespace EmployeeAdminPortal.RTO
     { 
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
-        public AddressRTO Address { get; set; } = new AddressRTO();
+        public string Village { get; set; } = string.Empty;
+        public string City { get; set; } = string.Empty;
+        public string PostalCode { get; set; } = string.Empty;
 
     }
 }

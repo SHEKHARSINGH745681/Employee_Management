@@ -3,6 +3,7 @@ using EmployeeAdminPortal.DTO;
 using EmployeeAdminPortal.Models.Entity;
 using EmployeeAdminPortal.Repository.CrudRepo;
 using Microsoft.AspNetCore.Mvc;
+using EmployeeAdminPortal.Echo;
 
 namespace EmployeeAdminPortal.Controllers
 {
@@ -18,9 +19,6 @@ namespace EmployeeAdminPortal.Controllers
             _crudRepo = crudRepo;
         }
 
-
-
-
         [HttpGet]
         [Route("/farmer")]
         public async Task<IActionResult> GetAllFarmer()
@@ -32,7 +30,7 @@ namespace EmployeeAdminPortal.Controllers
 
         [HttpPost]
         [Route("/farmer")]
-        public async Task<IActionResult> CreateFarmer([FromBody] FarmerDTO farmerDto)
+        public async Task<ActionResult<Echos>>CreateFarmer([FromBody] FarmerDTO farmerDto)
         {
             var farmer = new Farmer
             {
@@ -50,8 +48,7 @@ namespace EmployeeAdminPortal.Controllers
             };
 
             var createdFarmer = await _crudRepo.CreateFarmerAsync(farmer);
-            return Ok(new { message = "Farmer Create SucessFully" });
-
+            return Echos.Ok(createdFarmer);
         }
 
     }

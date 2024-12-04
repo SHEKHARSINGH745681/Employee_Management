@@ -1,11 +1,14 @@
 ﻿namespace EmployeeAdminPortal.DTO
 {
-    public class AddressRTO
+    public class AddressDTO
     {
-        public string Village { get; set; } = string.Empty;
-        public string City { get; set; } = string.Empty;
-        public string PostalCode { get; set; } = string.Empty;
-        public string Country { get; set; } = string.Empty;
-        public string Phone { get; set; } = string.Empty;
+
+        public string? Village { get; set; } 
+        public string? City { get; set; } 
+        public string PostalCode { get; set; } = null!;
+        public string Country { get; set; } = null!;
+        public string Phone { get; set; } = null!;
+
+
     }
 }

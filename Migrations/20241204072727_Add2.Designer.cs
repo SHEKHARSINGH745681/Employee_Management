@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EmployeeAdminPortal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241203073224_Add2")]
+    [Migration("20241204072727_Add2")]
     partial class Add2
     {
         /// <inheritdoc />
@@ -140,7 +140,6 @@ namespace EmployeeAdminPortal.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Country")
@@ -156,7 +155,6 @@ namespace EmployeeAdminPortal.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Village")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");

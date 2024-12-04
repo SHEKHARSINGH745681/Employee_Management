@@ -44,12 +44,10 @@ namespace EmployeeAdminPortal.Repository.CrudRepo
                 {
                     FirstName = f.FirstName,
                     LastName = f.LastName,
-                    Address = new RTO.AddressRTO
-                    {
-                        Village = f.Address.Village,
-                        City = f.Address.City,
-                        PostalCode = f.Address.PostalCode
-                    }
+                    Village = f.Address.Village,
+                    City = f.Address.City,
+                    PostalCode = f.Address.PostalCode
+                    
                 })
                 .ToListAsync();
 

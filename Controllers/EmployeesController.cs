@@ -28,9 +28,6 @@ namespace EmployeeAdminPortal.Controllers
             return Ok(employees);
         }
 
-
-        
-
         // GET: api/employees/{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEmployeeById(int id)
