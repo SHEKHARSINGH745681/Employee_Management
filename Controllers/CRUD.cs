@@ -4,6 +4,8 @@ using EmployeeAdminPortal.Models.Entity;
 using EmployeeAdminPortal.Repository.CrudRepo;
 using Microsoft.AspNetCore.Mvc;
 using EmployeeAdminPortal.Echo;
+using EmployeeAdminPortal.RTO;
+using EmployeeAdminPortal.IRepo;
 
 namespace EmployeeAdminPortal.Controllers
 {
@@ -21,34 +23,28 @@ namespace EmployeeAdminPortal.Controllers
 
         [HttpGet]
         [Route("/farmer")]
-        public async Task<IActionResult> GetAllFarmer()
+        public async Task<ActionResult<Echos>> GetAllFarmer()
         {
             var farmers = await _crudRepo.GetFarmerAsync();
-            return Ok(farmers);
+            return Echos.Ok(farmers);
         }
 
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult<FarmerRTO?>> GetById(int id)
+        {
+            var farmer = await _crudRepo.GetById(id);
+            return Echos.OkIfNotNull(farmer);
+            
+        }
 
+ 
         [HttpPost]
         [Route("/farmer")]
-        public async Task<ActionResult<Echos>>CreateFarmer([FromBody] FarmerDTO farmerDto)
+        public async Task<ActionResult<Echos>> AddFarmer([FromBody] FarmerDTO farmerDto)
         {
-            var farmer = new Farmer
-            {
-                FirstName = farmerDto.FirstName,
-                LastName = farmerDto.LastName,
-                Description = farmerDto.Description,
-                Address = new Address
-                {
-                    Village = farmerDto.Address.Village,
-                    City = farmerDto.Address.City,
-                    PostalCode = farmerDto.Address.PostalCode,
-                    Country = farmerDto.Address.Country,
-                    Phone = farmerDto.Address.Phone
-                }
-            };
-
-            var createdFarmer = await _crudRepo.CreateFarmerAsync(farmer);
-            return Echos.Ok(createdFarmer);
+            var result = await _crudRepo.AddFarmer(farmerDto);
+            return result;
         }
 
     }

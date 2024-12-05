@@ -2,13 +2,14 @@
 
 namespace EmployeeAdminPortal.DTO
 {
-    public class FarmerDTO
+        public class FarmerDTO 
     {
-        public string FirstName { get; set; } = string.Empty;
-        public string LastName { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
+            public string FirstName { get; set; } = string.Empty;
+            public string LastName { get; set; } = string.Empty;
+            public string Description { get; set; } = string.Empty;
+            public AddressDTO Address { get; set; } = new AddressDTO();
+        }
 
-        public AddressDTO Address { get; set; } = new AddressDTO();
-
+       
     }
-}
+

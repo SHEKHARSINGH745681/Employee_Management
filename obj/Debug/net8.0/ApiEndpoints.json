@@ -1,5 +1,31 @@
 [
   {
+    "ContainingType": "EmployeeAdminPortal.Controllers.CRUD",
+    "Method": "GetById",
+    "RelativePath": "Api/CRUD/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EmployeeAdminPortal.RTO.FarmerRTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "EmployeeAdminPortal.Controllers.DepartmentController",
     "Method": "GetAllDepartments",
     "RelativePath": "Api/Department",
@@ -127,11 +153,21 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "EmployeeAdminPortal.Echo.Echos",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "EmployeeAdminPortal.Controllers.CRUD",
-    "Method": "CreateFarmer",
+    "Method": "AddFarmer",
     "RelativePath": "farmer",
     "HttpMethod": "POST",
     "IsController": true,
