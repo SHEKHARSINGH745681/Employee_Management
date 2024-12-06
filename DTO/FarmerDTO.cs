@@ -12,10 +12,14 @@ namespace EmployeeAdminPortal.DTO
         public string? AadharNumber { get; set; }
         public string? PanNumber { get; set; }
         public DateTime RegistrationDate { get; set; } = DateTime.Now;
-        public AddressDTO? Address { get; set; } 
+        public string? Street { get; set; }
+        public string? City { get; set; }
+        public string? State { get; set; }
+        public string? ZipCode { get; set; }
+        public string? Breed { get; set; }
+        public int Age { get; set; }
+        public string? HealthStatus { get; set; }
 
-        public CropDTO? Crop { get; set; }
-       
 
     }
 
