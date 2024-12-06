@@ -12,38 +12,38 @@ namespace EmployeeAdminPortal.Controllers
 
     [Route("Api/[Controller]")]
     [ApiController]
-    public class CRUD : ControllerBase
+    public class Farmer_Controller : ControllerBase
     {
-        private readonly CrudRepo _crudRepo;
+        private readonly IFarmer _Ifarmer;
 
-        public CRUD(CrudRepo crudRepo, ApplicationDbContext dbContext)
+        public Farmer_Controller(IFarmer _Ifarmer, ApplicationDbContext dbContext)
         {
-            _crudRepo = crudRepo;
+            this._Ifarmer = _Ifarmer;
         }
 
         [HttpGet]
         [Route("/farmer")]
         public async Task<ActionResult<Echos>> GetAllFarmer()
         {
-            var farmers = await _crudRepo.GetFarmerAsync();
+            var farmers = await _Ifarmer.GetFarmerAsync();
             return Echos.Ok(farmers);
         }
 
-        [HttpGet]
-        [Route("{id}")]
-        public async Task<ActionResult<FarmerRTO?>> GetById(int id)
-        {
-            var farmer = await _crudRepo.GetById(id);
-            return Echos.OkIfNotNull(farmer);
+        //[HttpGet]
+        //[Route("{id}")]
+        //public async Task<ActionResult<FarmerRTO?>> GetById(int id)
+        //{
+        //    var farmer = await _Ifarmer.GetById(id);
+        //    return Echos.OkIfNotNull(farmer);
             
-        }
+        //}
 
  
         [HttpPost]
         [Route("/farmer")]
         public async Task<ActionResult<Echos>> AddFarmer([FromBody] FarmerDTO farmerDto)
         {
-            var result = await _crudRepo.AddFarmer(farmerDto);
+            var result = await _Ifarmer.AddFarmer(farmerDto);
             return result;
         }
 

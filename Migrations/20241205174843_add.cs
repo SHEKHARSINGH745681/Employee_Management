@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EmployeeAdminPortal.Migrations
 {
     /// <inheritdoc />
-    public partial class MigrationName : Migration
+    public partial class add : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,11 +17,10 @@ namespace EmployeeAdminPortal.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Village = table.Column<string>(type: "text", nullable: true),
+                    Street = table.Column<string>(type: "text", nullable: true),
                     City = table.Column<string>(type: "text", nullable: true),
-                    PostalCode = table.Column<string>(type: "text", nullable: false),
-                    Country = table.Column<string>(type: "text", nullable: false),
-                    Phone = table.Column<string>(type: "text", nullable: false)
+                    State = table.Column<string>(type: "text", nullable: true),
+                    ZipCode = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -67,21 +66,18 @@ namespace EmployeeAdminPortal.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "farmers",
+                name: "Farmers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    FirstName = table.Column<string>(type: "text", nullable: false),
-                    LastName = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
                     AddressId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_farmers", x => x.Id);
+                    table.PrimaryKey("PK_Farmers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_farmers_Addresses_AddressId",
+                        name: "FK_Farmers_Addresses_AddressId",
                         column: x => x.AddressId,
                         principalTable: "Addresses",
                         principalColumn: "Id",
@@ -112,21 +108,81 @@ namespace EmployeeAdminPortal.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Cattles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Breed = table.Column<string>(type: "text", nullable: false),
+                    Age = table.Column<int>(type: "integer", nullable: false),
+                    HealthStatus = table.Column<string>(type: "text", nullable: true),
+                    FarmerId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cattles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Cattles_Farmers_FarmerId",
+                        column: x => x.FarmerId,
+                        principalTable: "Farmers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Crops",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CropName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Season = table.Column<string>(type: "text", nullable: true),
+                    Quantity = table.Column<double>(type: "double precision", nullable: false),
+                    HarvestDate = table.Column<string>(type: "text", nullable: true),
+                    FarmerId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Crops", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Crops_Farmers_FarmerId",
+                        column: x => x.FarmerId,
+                        principalTable: "Farmers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cattles_FarmerId",
+                table: "Cattles",
+                column: "FarmerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Crops_FarmerId",
+                table: "Crops",
+                column: "FarmerId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_DepartmentId",
                 table: "Employees",
                 column: "DepartmentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_farmers_AddressId",
-                table: "farmers",
-                column: "AddressId",
-                unique: true);
+                name: "IX_Farmers_AddressId",
+                table: "Farmers",
+                column: "AddressId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Cattles");
+
+            migrationBuilder.DropTable(
+                name: "Crops");
+
             migrationBuilder.DropTable(
                 name: "Dispatchs");
 
@@ -134,7 +190,7 @@ namespace EmployeeAdminPortal.Migrations
                 name: "Employees");
 
             migrationBuilder.DropTable(
-                name: "farmers");
+                name: "Farmers");
 
             migrationBuilder.DropTable(
                 name: "Departments");

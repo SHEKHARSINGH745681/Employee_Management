@@ -1,15 +1,31 @@
-﻿using EmployeeAdminPortal.Models.Entity;
-
+﻿
 namespace EmployeeAdminPortal.DTO
 {
-        public class FarmerDTO 
+    public class FarmerDTO
     {
-            public string FirstName { get; set; } = string.Empty;
-            public string LastName { get; set; } = string.Empty;
-            public string Description { get; set; } = string.Empty;
-            public AddressDTO Address { get; set; } = new AddressDTO();
-        }
+        public String? name { get; set; }
 
-       
+        public String? email { get; set; }
+
+        public String? phoneNumber { get; set; }
+
+        public String? bankAccountNumber { get; set; }
+
+        public String? aadharNumber { get; set; }
+
+        public String? panNumber { get; set; }
+
+        public Boolean isActive;
+
+        public AddressDTO Address { get; set; } = new AddressDTO();
+
+        public CattleDTO Cattle { get; set; } = new CattleDTO();
+
+        public CropDTO Crop { get; set; } = new CropDTO();
+        
     }
+
+
+}
+
 

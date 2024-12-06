@@ -139,24 +139,78 @@ namespace EmployeeAdminPortal.Migrations
                     b.Property<string>("City")
                         .HasColumnType("text");
 
-                    b.Property<string>("Country")
-                        .IsRequired()
+                    b.Property<string>("State")
                         .HasColumnType("text");
 
-                    b.Property<string>("Phone")
-                        .IsRequired()
+                    b.Property<string>("Street")
                         .HasColumnType("text");
 
-                    b.Property<string>("PostalCode")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Village")
+                    b.Property<string>("ZipCode")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.ToTable("Addresses");
+                });
+
+            modelBuilder.Entity("EmployeeAdminPortal.Models.Entity.Cattle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Age")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Breed")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("FarmerId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("HealthStatus")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FarmerId");
+
+                    b.ToTable("Cattles");
+                });
+
+            modelBuilder.Entity("EmployeeAdminPortal.Models.Entity.Crop", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CropName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("FarmerId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("HarvestDate")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Quantity")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Season")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FarmerId");
+
+                    b.ToTable("Crops");
                 });
 
             modelBuilder.Entity("EmployeeAdminPortal.Models.Entity.Farmer", b =>
@@ -170,22 +224,11 @@ namespace EmployeeAdminPortal.Migrations
                     b.Property<int>("AddressId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId")
-                        .IsUnique();
+                    b.HasIndex("AddressId");
 
-                    b.ToTable("farmers");
+                    b.ToTable("Farmers");
                 });
 
             modelBuilder.Entity("EmployeeAdminPortal.Moddels.Entities.Employee", b =>
@@ -199,11 +242,33 @@ namespace EmployeeAdminPortal.Migrations
                     b.Navigation("Department");
                 });
 
+            modelBuilder.Entity("EmployeeAdminPortal.Models.Entity.Cattle", b =>
+                {
+                    b.HasOne("EmployeeAdminPortal.Models.Entity.Farmer", "Farmer")
+                        .WithMany("Cattles")
+                        .HasForeignKey("FarmerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Farmer");
+                });
+
+            modelBuilder.Entity("EmployeeAdminPortal.Models.Entity.Crop", b =>
+                {
+                    b.HasOne("EmployeeAdminPortal.Models.Entity.Farmer", "Farmer")
+                        .WithMany("Crops")
+                        .HasForeignKey("FarmerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Farmer");
+                });
+
             modelBuilder.Entity("EmployeeAdminPortal.Models.Entity.Farmer", b =>
                 {
                     b.HasOne("EmployeeAdminPortal.Models.Entity.Address", "Address")
-                        .WithOne()
-                        .HasForeignKey("EmployeeAdminPortal.Models.Entity.Farmer", "AddressId")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -213,6 +278,13 @@ namespace EmployeeAdminPortal.Migrations
             modelBuilder.Entity("EmployeeAdminPortal.Models.Department", b =>
                 {
                     b.Navigation("Employees");
+                });
+
+            modelBuilder.Entity("EmployeeAdminPortal.Models.Entity.Farmer", b =>
+                {
+                    b.Navigation("Cattles");
+
+                    b.Navigation("Crops");
                 });
 #pragma warning restore 612, 618
         }

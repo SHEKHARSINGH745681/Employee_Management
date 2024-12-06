@@ -1,14 +1,18 @@
-﻿namespace EmployeeAdminPortal.Models.Entity
+﻿
+namespace EmployeeAdminPortal.Models.Entity
 {
     public class Address
     {
         public int Id { get; set; }
-        public string? Village { get; set; } 
-        public string? City { get; set; } 
-        public string PostalCode { get; set; } = null!;
-        public string Country { get; set; } = null!;
-        public string Phone { get; set; } = null!;
 
+        public String? Street { get; set; }
+
+        public String? City { get; set; }
+
+        public String ? State { get; set; }
+
+        public String? ZipCode { get; set; }
 
     }
 }
+

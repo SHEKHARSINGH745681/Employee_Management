@@ -26,5 +26,13 @@
 
   <ItemGroup>
     <None Remove="Repository\" />
+    <None Remove="Repository\EmployeeRepo\" />
+    <None Remove="Repository\Dispatch\" />
+    <None Remove="Migrations\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repository\EmployeeRepo\" />
+    <Folder Include="Repository\Dispatch\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 </Project>

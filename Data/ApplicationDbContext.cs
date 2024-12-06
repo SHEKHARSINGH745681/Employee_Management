@@ -25,22 +25,30 @@ namespace EmployeeAdminPortal.Data
                 .HasForeignKey(e => e.DepartmentId);
 
 
-            //  between Farmer and Address
+            //  between Farmer and Crop
             modelBuilder.Entity<Farmer>()
-                .HasOne(f => f.Address)
-                .WithOne()
-                .HasForeignKey<Farmer>(f => f.AddressId);
+                .HasMany(f => f.Crops)
+                .WithOne(c => c.Farmer)
+                .HasForeignKey(c => c.FarmerId);
+
+            modelBuilder.Entity<Farmer>()
+             .HasMany(f => f.Cattles)
+             .WithOne(c => c.Farmer)
+             .HasForeignKey(c => c.FarmerId);  // This defines the foreign key in the Cattle table
         }
+            // Fluent API configuration for the Farmer-Address one-to-many relationship
+        //    modelBuilder.Entity<Farmer>()
+        //   .HasMany(f => f.Addresses)
+        //   .WithOne(a => a.Farmer)
+        //   .HasForeignKey(a => a.FarmerId);
+        //}
 
-
-
-
-        //CRUD CONTROLLER
-        public DbSet<Farmer> farmers { get; set; }
+        // DbSet properties to represent tables in the database
+        public DbSet<Farmer> Farmers { get; set; }
         public DbSet<Address> Addresses { get; set; }
-
-
+        public DbSet<Cattle> Cattles { get; set; }
+        public DbSet<Crop> Crops { get; set; }
     }
-
-
 }
+
+

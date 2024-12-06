@@ -21,7 +21,7 @@ builder.Services.AddScoped<EmpRepo, RepositoryImpl>();
 builder.Services.AddScoped<IDepRepo, DepRepo>();
 builder.Services.AddScoped<IDispatchRepo, DispatchRepoImpl>();
 
-builder.Services.AddScoped<CrudRepo, CrudRepoImpl>();
+builder.Services.AddScoped<IFarmer, FarmerRepoImpl>();
 
 var app = builder.Build();
 

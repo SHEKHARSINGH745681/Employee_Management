@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeAdminPortal.Repository.CrudRepo
 {
-    public interface CrudRepo
+    public interface IFarmer
     {
         Task<ActionResult<Echos>> AddFarmer(FarmerDTO farmerDto);
       //  Task CreateFarmerAsync(Farmer farmer);
-        Task<FarmerRTO?> GetById(int id);
+        //Task<FarmerRTO?> GetById(int id);
         Task<IEnumerable<FarmerRTO>> GetFarmerAsync();
     }
 }
