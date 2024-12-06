@@ -22,75 +22,64 @@ namespace EmployeeAdminPortal.Repository.CrudRepo
         public async Task<IEnumerable<FarmerRTO>> GetFarmerAsync()
         {
             var farmers = await _dbContext.Farmers
-                .Include(f => f.Crops)
-                .Include(f => f.Cattles)
+                .Include(f => f.Address)
+                // .Include(f => f.Cattles)
                 .Select(f => new FarmerRTO
                 {
-                    name = f.name,
-                    email = f.email,
-                    isActive = f.isActive,
-                    phoneNumber = f.phoneNumber
+                    name = f.Name,
+                    email = f.Email,
+                   
+                    phoneNumber = f.PhoneNumber
                 })
                 .ToListAsync();
             return farmers;
         }
 
-        //public async Task<FarmerRTO?> GetById(int id)
-        //{
-        //    var farmer = await _dbContext.Set<Farmer>()
-        //        .Include(f => f.Address)
-        //        .Where(f => f.name == name)
-        //        .Select(f => new FarmerRTO
-        //        {
-        //            FirstName = f.FirstName,
-        //            LastName = f.LastName,
-        //            Village = f.Address.Village,
-        //            City = f.Address.City,
-        //            PostalCode = f.Address.PostalCode
-        //        })
-        //        .FirstOrDefaultAsync();
 
-        //    return farmer;
-        //}
 
         public async Task<ActionResult<Echos>> AddFarmer(FarmerDTO farmerDto)
         {
             var existingFarmer = await _dbContext.Farmers
-                .FirstOrDefaultAsync(f => f.phoneNumber == farmerDto.phoneNumber);
-
+                .FirstOrDefaultAsync(f => f.PhoneNumber == farmerDto.PhoneNumber);
             if (existingFarmer != null)
             {
-                return Echos.BadRequest($"Farmer already exists.");
+                return Echos.BadRequest("Farmer already exists.");
             }
 
-            var newCrop = new Crop
+            var newAddress = new Address
             {
-                CropName = farmerDto.Crop.CropName,
-                Season = farmerDto.Crop.Season,
-                Quantity = farmerDto.Crop.Quantity,
-                HarvestDate = farmerDto.Crop.HarvestDate
-                
+                Street = farmerDto.Address?.Street,
+                City = farmerDto.Address?.City,
+                State = farmerDto.Address?.State,
+                ZipCode = farmerDto.Address?.ZipCode
             };
 
-            var newCattale = new Cattle
+
+            var newCrop = new Address
             {
-                Breed = farmerDto.Cattle.Breed,
-                Age = farmerDto.Cattle.Age,
-                HealthStatus = farmerDto.Cattle.HealthStatus
+                Street = farmerDto.Address?.Street,
+                City = farmerDto.Address?.City,
+                State = farmerDto.Address?.State,
+                ZipCode = farmerDto.Address?.ZipCode
             };
+
+            _dbContext.Add(newAddress);
 
             var newFarmer = new Farmer
             {
-                name = farmerDto.name,
-                panNumber = farmerDto.panNumber,
-                email = farmerDto.email,
-                bankAccountNumber = farmerDto.bankAccountNumber,
-                aadharNumber = farmerDto.aadharNumber,
-                isActive = farmerDto.isActive,
+                Name = farmerDto.Name,
+                PanNumber = farmerDto.PanNumber,
+                RegistrationDate = farmerDto.RegistrationDate,
+                Email = farmerDto.Email,
+                PhoneNumber = farmerDto.PhoneNumber,
+                BankAccountNumber = farmerDto.BankAccountNumber,
+                AadharNumber = farmerDto.AadharNumber,
+                AddressId = newAddress.Id,
+                Address = newAddress,
             };
 
-            // Add all entities and save in a single transaction
-            _dbContext.AddRange(newCrop, newCattale, newFarmer);
+            _dbContext.Add(newFarmer);
+
             await _dbContext.SaveChangesAsync();
 
             return Echos.Ok(newFarmer);

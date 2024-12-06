@@ -14,19 +14,19 @@ namespace EmployeeAdminPortal.Repository
                 _context = context;
             }
 
-        public async Task<Department> AddDepartments(Department department)
-        {
-            _context.Departments.Add(department);
-            await _context.SaveChangesAsync();
-            return department;
-        }
+        //public async Task<Department> AddDepartments(Department department)
+        //{
+        //    _context.Departments.Add(department);
+        //    await _context.SaveChangesAsync();
+        //    return department;
+        //}
 
        
 
-        public async Task<IEnumerable<Department>> GetDepartmentsAsync()
-            {
-                return await _context.Departments.ToListAsync();
-            }
+        //public async Task<IEnumerable<Department>> GetDepartmentsAsync()
+        //    {
+        //        return await _context.Departments.ToListAsync();
+        //    }
         }
     }
 

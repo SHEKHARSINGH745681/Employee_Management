@@ -26,18 +26,9 @@ namespace EmployeeAdminPortal.Controllers
         public async Task<ActionResult<Echos>> GetAllFarmer()
         {
             var farmers = await _Ifarmer.GetFarmerAsync();
+
             return Echos.Ok(farmers);
         }
-
-        //[HttpGet]
-        //[Route("{id}")]
-        //public async Task<ActionResult<FarmerRTO?>> GetById(int id)
-        //{
-        //    var farmer = await _Ifarmer.GetById(id);
-        //    return Echos.OkIfNotNull(farmer);
-            
-        //}
-
  
         [HttpPost]
         [Route("/farmer")]

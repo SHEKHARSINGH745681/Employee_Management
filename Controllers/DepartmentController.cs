@@ -19,19 +19,19 @@ namespace EmployeeAdminPortal.Controllers
             _depRepo = depRepo;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllDepartments()
-        {
-            var departments = await _depRepo.GetDepartmentsAsync();
-            return Ok(departments);
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> GetAllDepartments()
+        //{
+        //    var departments = await _depRepo.GetDepartmentsAsync();
+        //    return Ok(departments);
+        //}
 
-        [HttpPost]
-        public async Task<IActionResult>AddDepartments(Department department)
-        {
-            var newEmployee = await _depRepo.AddDepartments(department);
-            return Ok(newEmployee);
-        }
+        //[HttpPost]
+        //public async Task<IActionResult>AddDepartments(Department department)
+        //{
+        //    var newEmployee = await _depRepo.AddDepartments(department);
+        //    return Ok(newEmployee);
+        //}
 
            
         

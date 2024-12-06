@@ -17,22 +17,22 @@ namespace EmployeeAdminPortal.Controllers
             _idispatchRepo = idispatchRepo;
         }
 
-        [HttpGet("Export")]
-        public async Task<IActionResult> ExportDispatchToExcel()
-        {
+        //[HttpGet("Export")]
+        //public async Task<IActionResult> ExportDispatchToExcel()
+        //{
 
-            var fileContent = await _idispatchRepo.ExportDispatchToExcel();
+        //    var fileContent = await _idispatchRepo.ExportDispatchToExcel();
 
-            //  Jo downloadable response Hai
-            return File(fileContent, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Dispatch.xlsx");
-        }
+        //    //  Jo downloadable response Hai
+        //    return File(fileContent, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Dispatch.xlsx");
+        //}
 
-        [HttpPost("Add-Dispatch")]
-        public async Task<IActionResult> AddDispatchAsync(Dispatch dispatch)
-        {
-            var newDispatch = await _idispatchRepo.AddDispatchAsync(dispatch);
-            return Ok(newDispatch);
-        }
+        //[HttpPost("Add-Dispatch")]
+        //public async Task<IActionResult> AddDispatchAsync(Dispatch dispatch)
+        //{
+        //    var newDispatch = await _idispatchRepo.AddDispatchAsync(dispatch);
+        //    return Ok(newDispatch);
+        //}
 
 
     }

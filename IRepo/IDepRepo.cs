@@ -5,9 +5,9 @@ namespace EmployeeAdminPortal.Repository
 {
     public interface IDepRepo
     {
-        Task<IEnumerable<Department>> GetDepartmentsAsync();
+        //Task<IEnumerable<Department>> GetDepartmentsAsync();
 
-        Task<Department>AddDepartments(Department department);
+        //Task<Department>AddDepartments(Department department);
     }
     }
 

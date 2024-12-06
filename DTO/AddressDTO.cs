@@ -1,15 +1,17 @@
-﻿namespace EmployeeAdminPortal.DTO
+﻿using EmployeeAdminPortal.Models.Entity;
+using System.ComponentModel.DataAnnotations;
+
+namespace EmployeeAdminPortal.DTO
 {
     public class AddressDTO
     {
 
-        public String? Street { get; set; }
+        public string? Street { get; set; }
+        public string? City { get; set; }
+        public string? State { get; set; }
+        public string? ZipCode { get; set; }
 
-        public String? City { get; set; }
 
-        public String? State { get; set; }
-
-        public String? ZipCode { get; set; }
 
 
     }
