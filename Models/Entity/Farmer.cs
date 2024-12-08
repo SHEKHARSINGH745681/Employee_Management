@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace EmployeeAdminPortal.Models.Entity
 {
@@ -12,8 +13,9 @@ namespace EmployeeAdminPortal.Models.Entity
         public string? BankAccountNumber { get; set; }
         public string? AadharNumber { get; set; }
         public string? PanNumber { get; set; }
+
         public int AddressId { get; set; } // FK to Address
-        public Address Address { get; set; } // Navigation Property to Address
+        public Address? Address { get; set; } // Navigation Property to Address
 
         // Navigation Property for related Crops
         public List<Crop> Crops { get; set; } = new List<Crop>();

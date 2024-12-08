@@ -1,5 +1,6 @@
 ﻿
 using EmployeeAdminPortal.Models.Entity;
+using System;
 
 namespace EmployeeAdminPortal.DTO
 {
@@ -19,6 +20,9 @@ namespace EmployeeAdminPortal.DTO
         public string? Breed { get; set; }
         public int Age { get; set; }
         public string? HealthStatus { get; set; }
+
+        public CropDTO? Crop { get; set; }
+        public AddressDTO? Address { get; set; }
 
 
     }

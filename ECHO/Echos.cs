@@ -5,6 +5,7 @@ namespace EmployeeAdminPortal.Echo
 {
     public sealed class Echos
     {
+
         public string Status { get; set; } = null!;
         public string? Message { get; set; }
 
@@ -62,10 +63,7 @@ namespace EmployeeAdminPortal.Echo
             };
         }
 
-        internal static ActionResult<Echos> BadRequest(Echos echos)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 
 }

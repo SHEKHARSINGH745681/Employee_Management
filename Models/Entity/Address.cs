@@ -1,5 +1,6 @@
 ﻿
 using System.Text.Json.Serialization;
+using System;
 
 namespace EmployeeAdminPortal.Models.Entity
 {
