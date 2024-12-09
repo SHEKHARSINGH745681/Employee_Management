@@ -123,6 +123,7 @@ namespace EmployeeAdminPortal.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CropName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("FarmerId")
@@ -181,6 +182,31 @@ namespace EmployeeAdminPortal.Migrations
                     b.ToTable("Farmers");
                 });
 
+            modelBuilder.Entity("EmployeeAdminPortal.Models.UploadImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("EmployeeId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ImageName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UploadImages");
+                });
+
             modelBuilder.Entity("EmployeeAdminPortal.Moddels.Entities.Employee", b =>
                 {
                     b.HasOne("EmployeeAdminPortal.Models.Department", "Department")
@@ -221,8 +247,7 @@ namespace EmployeeAdminPortal.Migrations
 
             modelBuilder.Entity("EmployeeAdminPortal.Models.Entity.Farmer", b =>
                 {
-                    b.Navigation("Address")
-                        .IsRequired();
+                    b.Navigation("Address");
 
                     b.Navigation("Crops");
                 });

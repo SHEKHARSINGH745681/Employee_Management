@@ -1,14 +1,21 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 namespace EmployeeAdminPortal.Models
 {
 	public class UploadImage
 	{
-		public required string ImageName { get; set; }
+        [Key]
+        public int Id { get; set; }
 
-		public IFormFile? file { get; set; }
+        [Required]
+        public string ImageName { get; set; }
+       public string EmployeeId { get; set; } = string.Empty;
+        [Required]
+        public string Url { get; set; }
+    }
 
-	}
 }
+
 	
 
 

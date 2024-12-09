@@ -40,6 +40,8 @@ namespace EmployeeAdminPortal.Data
         public DbSet<Farmer> Farmers { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Crop> Crops { get; set; }
+
+         public DbSet<UploadImage> UploadImages { get; set; }
     }
 }
 

@@ -20,9 +20,13 @@ namespace EmployeeAdminPortal.DTO
         public string? Breed { get; set; }
         public int Age { get; set; }
         public string? HealthStatus { get; set; }
+        public string? CropName { get; set; }
+        public string? Season { get; set; }
+        public double Quantity { get; set; }
+        public string? HarvestDate { get; set; }
 
-        public CropDTO? Crop { get; set; }
-        public AddressDTO? Address { get; set; }
+       // public CropDTO? Crop { get; set; }
+        //public AddressDTO? Address { get; set; }
 
 
     }

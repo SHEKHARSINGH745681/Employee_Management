@@ -3,36 +3,8 @@
   "WorkspaceRootPath": "D:\\Projects\\Employee_Management\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C7271D08-1F72-430C-BB36-C42EC0D6DBF1}|EmployeeAdminPortal.csproj|d:\\projects\\employee_management\\models\\entity\\farmer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7271D08-1F72-430C-BB36-C42EC0D6DBF1}|EmployeeAdminPortal.csproj|solutionrelative:models\\entity\\farmer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7271D08-1F72-430C-BB36-C42EC0D6DBF1}|EmployeeAdminPortal.csproj|d:\\projects\\employee_management\\models\\entity\\crop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7271D08-1F72-430C-BB36-C42EC0D6DBF1}|EmployeeAdminPortal.csproj|solutionrelative:models\\entity\\crop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7271D08-1F72-430C-BB36-C42EC0D6DBF1}|EmployeeAdminPortal.csproj|d:\\projects\\employee_management\\models\\entity\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7271D08-1F72-430C-BB36-C42EC0D6DBF1}|EmployeeAdminPortal.csproj|solutionrelative:models\\entity\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7271D08-1F72-430C-BB36-C42EC0D6DBF1}|EmployeeAdminPortal.csproj|d:\\projects\\employee_management\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7271D08-1F72-430C-BB36-C42EC0D6DBF1}|EmployeeAdminPortal.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7271D08-1F72-430C-BB36-C42EC0D6DBF1}|EmployeeAdminPortal.csproj|d:\\projects\\employee_management\\dto\\addressdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7271D08-1F72-430C-BB36-C42EC0D6DBF1}|EmployeeAdminPortal.csproj|solutionrelative:dto\\addressdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7271D08-1F72-430C-BB36-C42EC0D6DBF1}|EmployeeAdminPortal.csproj|d:\\projects\\employee_management\\dto\\farmerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7271D08-1F72-430C-BB36-C42EC0D6DBF1}|EmployeeAdminPortal.csproj|solutionrelative:dto\\farmerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7271D08-1F72-430C-BB36-C42EC0D6DBF1}|EmployeeAdminPortal.csproj|d:\\projects\\employee_management\\repository\\farmerrepo\\farmerrepoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7271D08-1F72-430C-BB36-C42EC0D6DBF1}|EmployeeAdminPortal.csproj|solutionrelative:repository\\farmerrepo\\farmerrepoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7271D08-1F72-430C-BB36-C42EC0D6DBF1}|EmployeeAdminPortal.csproj|d:\\projects\\employee_management\\dto\\cropdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7271D08-1F72-430C-BB36-C42EC0D6DBF1}|EmployeeAdminPortal.csproj|solutionrelative:dto\\cropdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C7271D08-1F72-430C-BB36-C42EC0D6DBF1}|EmployeeAdminPortal.csproj|d:\\projects\\employee_management\\controllers\\imagecontroller\\uploadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7271D08-1F72-430C-BB36-C42EC0D6DBF1}|EmployeeAdminPortal.csproj|solutionrelative:controllers\\imagecontroller\\uploadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,110 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Address.cs",
-              "DocumentMoniker": "D:\\Projects\\Employee_Management\\Models\\Entity\\Address.cs",
-              "RelativeDocumentMoniker": "Models\\Entity\\Address.cs",
-              "ToolTip": "D:\\Projects\\Employee_Management\\Models\\Entity\\Address.cs",
-              "RelativeToolTip": "Models\\Entity\\Address.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAoAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T12:54:51.153Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AddressDTO.cs",
-              "DocumentMoniker": "D:\\Projects\\Employee_Management\\DTO\\AddressDTO.cs",
-              "RelativeDocumentMoniker": "DTO\\AddressDTO.cs",
-              "ToolTip": "D:\\Projects\\Employee_Management\\DTO\\AddressDTO.cs",
-              "RelativeToolTip": "DTO\\AddressDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAUAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T12:39:44.3Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CropDTO.cs",
-              "DocumentMoniker": "D:\\Projects\\Employee_Management\\DTO\\CropDTO.cs",
-              "RelativeDocumentMoniker": "DTO\\CropDTO.cs",
-              "ToolTip": "D:\\Projects\\Employee_Management\\DTO\\CropDTO.cs",
-              "RelativeToolTip": "DTO\\CropDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T12:39:41.758Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Crop.cs",
-              "DocumentMoniker": "D:\\Projects\\Employee_Management\\Models\\Entity\\Crop.cs",
-              "RelativeDocumentMoniker": "Models\\Entity\\Crop.cs",
-              "ToolTip": "D:\\Projects\\Employee_Management\\Models\\Entity\\Crop.cs",
-              "RelativeToolTip": "Models\\Entity\\Crop.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T12:38:51.613Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "D:\\Projects\\Employee_Management\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
-              "ToolTip": "D:\\Projects\\Employee_Management\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAADgvyEAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T12:37:51.968Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "FarmerRepoImpl.cs",
-              "DocumentMoniker": "D:\\Projects\\Employee_Management\\Repository\\FarmerRepo\\FarmerRepoImpl.cs",
-              "RelativeDocumentMoniker": "Repository\\FarmerRepo\\FarmerRepoImpl.cs",
-              "ToolTip": "D:\\Projects\\Employee_Management\\Repository\\FarmerRepo\\FarmerRepoImpl.cs",
-              "RelativeToolTip": "Repository\\FarmerRepo\\FarmerRepoImpl.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAwwCcAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T12:25:24.388Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Farmer.cs",
-              "DocumentMoniker": "D:\\Projects\\Employee_Management\\Models\\Entity\\Farmer.cs",
-              "RelativeDocumentMoniker": "Models\\Entity\\Farmer.cs",
-              "ToolTip": "D:\\Projects\\Employee_Management\\Models\\Entity\\Farmer.cs",
-              "RelativeToolTip": "Models\\Entity\\Farmer.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAywBgAAAAAAAAAAAAAAA==",
+              "Title": "UploadController.cs",
+              "DocumentMoniker": "D:\\Projects\\Employee_Management\\Controllers\\ImageController\\UploadController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ImageController\\UploadController.cs",
+              "ToolTip": "D:\\Projects\\Employee_Management\\Controllers\\ImageController\\UploadController.cs",
+              "RelativeToolTip": "Controllers\\ImageController\\UploadController.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAQwEkAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T12:24:54.986Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "FarmerDTO.cs",
-              "DocumentMoniker": "D:\\Projects\\Employee_Management\\DTO\\FarmerDTO.cs",
-              "RelativeDocumentMoniker": "DTO\\FarmerDTO.cs",
-              "ToolTip": "D:\\Projects\\Employee_Management\\DTO\\FarmerDTO.cs",
-              "RelativeToolTip": "DTO\\FarmerDTO.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T12:24:53.217Z",
+              "WhenOpened": "2024-12-09T11:25:12.787Z",
               "EditorCaption": ""
             }
           ]

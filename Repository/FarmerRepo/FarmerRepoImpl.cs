@@ -7,6 +7,8 @@ using EmployeeAdminPortal.RTO;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
+using System.Reflection.Emit;
 
 namespace EmployeeAdminPortal.Repository.CrudRepo
 {
@@ -22,20 +24,24 @@ namespace EmployeeAdminPortal.Repository.CrudRepo
         public async Task<IEnumerable<FarmerRTO>> GetFarmerAsync()
         {
             var farmers = await _dbContext.Farmers
-                .Include(f => f.Address)
-                // .Include(f => f.Cattles)
+                .Include(f => f.Address)    
+                .Include(f => f.Crops)
                 .Select(f => new FarmerRTO
                 {
                     name = f.Name,
                     email = f.Email,
-                   
-                    phoneNumber = f.PhoneNumber
+                    phoneNumber = f.PhoneNumber,
+                    Street = f.Address.Street,
+                    City = f.Address.City,
+                    State = f.Address.State,
+                    ZipCode = f.Address.ZipCode,
+                    CropName = f.Crops.FirstOrDefault().CropName,
+                    Season = f.Crops.FirstOrDefault().Season,
+                    HarvestDate = f.Crops.FirstOrDefault().HarvestDate
                 })
                 .ToListAsync();
             return farmers;
         }
-
-
 
         public async Task<ActionResult<Echos>> AddFarmer(FarmerDTO farmerDto)
         {
@@ -48,20 +54,20 @@ namespace EmployeeAdminPortal.Repository.CrudRepo
 
             var newCrop = new Crop
             {
-                CropName = farmerDto.Crop.CropName,
-                Season = farmerDto.Crop.Season,
-                Quantity = farmerDto.Crop.Quantity,
-                HarvestDate = farmerDto.Crop.HarvestDate
+                CropName = farmerDto.CropName,
+                Season = farmerDto.Season,
+                Quantity = farmerDto.Quantity,
+                HarvestDate = farmerDto.HarvestDate
             };
 
             _dbContext.Add(newCrop);
 
             var newAddress = new Address
             {
-                Street = farmerDto.Address?.Street,
-                City = farmerDto.Address?.City,
-                State = farmerDto.Address?.State,
-                ZipCode = farmerDto.Address?.ZipCode
+                Street = farmerDto.Street,
+                City = farmerDto.City,
+                State = farmerDto.State,
+                ZipCode = farmerDto.ZipCode
             };
 
             _dbContext.Add(newAddress);
