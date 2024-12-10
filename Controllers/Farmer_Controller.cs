@@ -21,14 +21,14 @@ namespace EmployeeAdminPortal.Controllers
             this._Ifarmer = _Ifarmer;
         }
 
-        [HttpGet]
-        [Route("/Getfarmer")]
-        public async Task<ActionResult<Echos>> GetAllFarmer()
-        {
-            var farmers = await _Ifarmer.GetFarmerAsync();
+        //[HttpGet]
+        //[Route("/Getfarmer")]
+        //public async Task<ActionResult<Echos>> GetAllFarmer()
+        //{
+        //    var farmers = await _Ifarmer.GetFarmerAsync();
 
-            return Echos.Ok(farmers);
-        }
+        //    return Echos.Ok(farmers);
+        //}
  
         [HttpPost]
         [Route("/Addfarmer")]
@@ -37,6 +37,7 @@ namespace EmployeeAdminPortal.Controllers
             var result = await _Ifarmer.AddFarmer(farmerDto);
             return result;
         }
+
 
         
     }

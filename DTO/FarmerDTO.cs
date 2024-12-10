@@ -13,19 +13,27 @@ namespace EmployeeAdminPortal.DTO
             public string? Email { get; set; }
             public string? BankAccountNumber { get; set; }
             public string? AadharNumber { get; set; }
-            public string? CropName { get; set; }
-            public string? Season { get; set; }
-            public int Quantity { get; set; }
-            public string? HarvestDate { get; set; }
+
             public string? Street { get; set; }
             public string? City { get; set; }
             public string? State { get; set; }
             public string? ZipCode { get; set; }
-           
-            public IFormFile file { get; set; } 
-        }
 
+            public string? CropName { get; set; }
+            public string? Season { get; set; }
+            public int Quantity { get; set; }
+            public string? HarvestDate { get; set; }
+
+
+
+            public IFormFile file { get; set; } 
     }
+
+}
+
+
+
+
 
 
 

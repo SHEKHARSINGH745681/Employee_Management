@@ -14,22 +14,26 @@ namespace EmployeeAdminPortal.Models.Entity
         public string? AadharNumber { get; set; }
         public string? PanNumber { get; set; }
 
+        public int ImageId { get; set; } // Foreign key for the uploaded image
+        public UploadImage Image { get; set; } // Navigation property
 
-        //F.K
-        public int? ImageId { get; set; }
         public int AddressId { get; set; }
-        public int CropId { get; set; }
-        public int CattleId { get; set; }
-
-        //Navigation
         public Address? Address { get; set; }
-        public UploadImage? UploadImage { get; set; }
+
+        public int CropId { get; set; }
         public Crop? Crop { get; set; }
-        public Cattle? Cattle { get; set; } 
-
-
-      
     }
-
-    
 }
+    
+    
+
+
+  
+   
+
+
+
+
+
+
+

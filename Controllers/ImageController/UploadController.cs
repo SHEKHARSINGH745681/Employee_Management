@@ -30,80 +30,80 @@ namespace EmployeeAdminPortal.Controllers.Image
             _dbContext = dbContext;
         }
 
-        [HttpPost("UploadImage")]
-        public async Task<ActionResult<Echos>> UploadImage([FromForm] UploadImage uploadImage)
-        {
-            if (uploadImage.File?.Length <= 0)
-                return Echos.BadRequest("No file provided or the file is empty.");
+        //[HttpPost("UploadImage")]
+        //public async Task<ActionResult<Echos>> UploadImage([FromForm] UploadImage uploadImage)
+        //{
+        //    if (uploadImage.File?.Length <= 0)
+        //        return Echos.BadRequest("No file provided or the file is empty.");
 
-            const long maxFileSize = 10 * 1024 * 1024; // 10 MB in bytes
+        //    const long maxFileSize = 10 * 1024 * 1024; // 10 MB in bytes
 
-            if (uploadImage.File.Length > maxFileSize)
-                return Echos.BadRequest("File size greater than 10 MB limit.");
+        //    if (uploadImage.File.Length > maxFileSize)
+        //        return Echos.BadRequest("File size greater than 10 MB limit.");
 
-            var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
-            var fileExtension = Path.GetExtension(uploadImage.File.FileName).ToLowerInvariant();
+        //    var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+        //    var fileExtension = Path.GetExtension(uploadImage.File.FileName).ToLowerInvariant();
 
-            if (!allowedExtensions.Contains(fileExtension))
-                return Echos.BadRequest("Invalid file type. Only JPG, PNG, and GIF are allowed.");
+        //    if (!allowedExtensions.Contains(fileExtension))
+        //        return Echos.BadRequest("Invalid file type. Only JPG, PNG, and GIF are allowed.");
 
-            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "UploadedImages");
-            Directory.CreateDirectory(uploadsFolder);
+        //    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "UploadedImages");
+        //    Directory.CreateDirectory(uploadsFolder);
 
-            var uniqueFileName = $"{Guid.NewGuid()}_{Path.GetFileNameWithoutExtension(uploadImage.ImageName)}{fileExtension}";
-            var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+        //    var uniqueFileName = $"{Guid.NewGuid()}_{Path.GetFileNameWithoutExtension(uploadImage.ImageName)}{fileExtension}";
+        //    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-            await using var stream = new FileStream(filePath, FileMode.Create);
-            await uploadImage.File.CopyToAsync(stream);
+        //    await using var stream = new FileStream(filePath, FileMode.Create);
+        //    await uploadImage.File.CopyToAsync(stream);
 
-            byte[] imageData = null;
-            if (uploadImage.File.Length > 0)
-            {
-                await using (var ms = new MemoryStream())
-                {
-                    await uploadImage.File.CopyToAsync(ms);
-                    imageData = ms.ToArray();
-                }
-            }
+        //    byte[] imageData = null;
+        //    if (uploadImage.File.Length > 0)
+        //    {
+        //        await using (var ms = new MemoryStream())
+        //        {
+        //            await uploadImage.File.CopyToAsync(ms);
+        //            imageData = ms.ToArray();
+        //        }
+        //    }
 
-            var uploadImageEntity = new UploadImage
-            {
-                ImageName = uploadImage.ImageName,
-                ImageData = imageData,
-                Url = filePath
-            };
+        //    var uploadImageEntity = new UploadImage
+        //    {
+        //        ImageName = uploadImage.ImageName,
+        //        ImageData = imageData,
+        //        Url = filePath
+        //    };
 
-            _dbContext.UploadImages.Add(uploadImageEntity);
-            await _dbContext.SaveChangesAsync();
+        //    _dbContext.UploadImages.Add(uploadImageEntity);
+        //    await _dbContext.SaveChangesAsync();
 
-            var fileSizeInBytes = imageData.Length;
+        //    var fileSizeInBytes = imageData.Length;
 
-            return Echos.Ok(new
-            {
-                Message = "Image uploaded successfully.",
-                FilePath = filePath,
-                FileSizeInBytes = imageData
-            });
-        }
+        //    return Echos.Ok(new
+        //    {
+        //        Message = "Image uploaded successfully.",
+        //        FilePath = filePath,
+        //        FileSizeInBytes = imageData
+        //    });
+        //}
 
 
-        [HttpGet("GetImage/{id}")]
-        public async Task<ActionResult> GetImage(int id)
-        {
-            var Image = await _dbContext.UploadImages.FindAsync(id);
+        //    [HttpGet("GetImage/{id}")]
+        //    public async Task<ActionResult> GetImage(int id)
+        //    {
+        //        var Image = await _dbContext.UploadImages.FindAsync(id);
 
-            if (Image == null)
-            {
-                return Echos.NotFound("Image not found.");
-            }
+        //        if (Image == null)
+        //        {
+        //            return Echos.NotFound("Image not found.");
+        //        }
 
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "UploadedImages", Path.GetFileName(Image.Url));
+        //        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "UploadedImages", Path.GetFileName(Image.Url));
 
-            var fileBytes = await System.IO.File.ReadAllBytesAsync(filePath);
-            var fileExtension = Path.GetExtension(filePath).ToLowerInvariant();
+        //        var fileBytes = await System.IO.File.ReadAllBytesAsync(filePath);
+        //        var fileExtension = Path.GetExtension(filePath).ToLowerInvariant();
 
-            return File(fileBytes, "application/octet-stream", $"{Image.ImageName}{fileExtension}");
-        }
+        //        return File(fileBytes, "application/octet-stream", $"{Image.ImageName}{fileExtension}");
+        //    }
     }
 }
 

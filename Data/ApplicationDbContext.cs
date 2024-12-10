@@ -1,4 +1,5 @@
-﻿using EmployeeAdminPortal.Moddels.Entities;
+﻿using System;
+using EmployeeAdminPortal.Moddels.Entities;
 using EmployeeAdminPortal.Models.Entity;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,30 +18,38 @@ namespace EmployeeAdminPortal.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Employee>()
-                .HasOne(e => e.Department)
-                .WithMany(d => d.Employees)
-                .HasForeignKey(e => e.DepartmentId);
-            //Image
+            //modelBuilder.Entity<Employee>()
+            //    .HasOne(e => e.Department)
+            //    .WithMany(d => d.Employees)
+            //    .HasForeignKey(e => e.DepartmentId);
+
+
             modelBuilder.Entity<Farmer>()
-                .HasOne(f => f.UploadImage)      
-                .WithOne()          
-                .HasForeignKey<UploadImage>(u => u.Id);
+                .HasOne(f => f.Image) // Farmer has one UploadImage
+                .WithMany() // UploadImage can have many Farmers
+                .HasForeignKey(f => f.ImageId) // Foreign key in Farmer entity
+                .OnDelete(DeleteBehavior.Cascade); // Cascade delete
+
+            
+            modelBuilder.Entity<UploadImage>()
+                .HasKey(ui => ui.Id); // Primary key
+
+
+
             //address
             modelBuilder.Entity<Farmer>()
-               .HasOne(f => f.Address)
-               .WithOne()
-               .HasForeignKey<Address>(u => u.Id);
+                .HasOne(f => f.Address)
+                .WithMany()
+                .HasForeignKey(f => f.AddressId);
+
+
+
             //Crop
             modelBuilder.Entity<Farmer>()
               .HasOne(f => f.Crop)
-              .WithOne()
-              .HasForeignKey<Crop>(u => u.Id);
-            //Cattle
-            modelBuilder.Entity<Farmer>()
-              .HasOne(f => f.Cattle)
-              .WithOne()
-              .HasForeignKey<Cattle>(u => u.Id);
+              .WithMany()
+              .HasForeignKey(f => f.CropId);
+
 
         }
         public DbSet<Farmer> Farmers { get; set; }

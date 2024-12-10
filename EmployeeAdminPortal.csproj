@@ -30,10 +30,12 @@
     <None Remove="Repository\Dispatch\" />
     <None Remove="Migrations\" />
     <None Remove="Models\Image\" />
+    <None Remove="Models\Employee\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repository\EmployeeRepo\" />
     <Folder Include="Repository\Dispatch\" />
     <Folder Include="Migrations\" />
+    <Folder Include="Models\Employee\" />
   </ItemGroup>
 </Project>

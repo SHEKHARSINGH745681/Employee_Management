@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EmployeeAdminPortal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241210111838_Add3")]
-    partial class Add3
+    [Migration("20241210175258_Add1")]
+    partial class Add1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,67 +24,6 @@ namespace EmployeeAdminPortal.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("EmployeeAdminPortal.Moddels.Entities.Employee", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("DepartmentId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Lastname")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<decimal>("Salary")
-                        .HasColumnType("numeric");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.ToTable("Employee");
-                });
-
-            modelBuilder.Entity("EmployeeAdminPortal.Models.Department", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("DepartmentName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Department");
-                });
 
             modelBuilder.Entity("EmployeeAdminPortal.Models.Entity.Address", b =>
                 {
@@ -123,9 +62,6 @@ namespace EmployeeAdminPortal.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("FarmerId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("HarvestDate")
                         .HasColumnType("text");
 
@@ -136,8 +72,6 @@ namespace EmployeeAdminPortal.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("FarmerId");
 
                     b.ToTable("Crops");
                 });
@@ -159,10 +93,13 @@ namespace EmployeeAdminPortal.Migrations
                     b.Property<string>("BankAccountNumber")
                         .HasColumnType("text");
 
+                    b.Property<int>("CropId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
-                    b.Property<int?>("ImageId")
+                    b.Property<int>("ImageId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Name")
@@ -181,51 +118,31 @@ namespace EmployeeAdminPortal.Migrations
 
                     b.HasIndex("AddressId");
 
+                    b.HasIndex("CropId");
+
+                    b.HasIndex("ImageId");
+
                     b.ToTable("Farmers");
                 });
 
             modelBuilder.Entity("EmployeeAdminPortal.Models.Entity.UploadImage", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<byte[]>("ImageData")
                         .IsRequired()
                         .HasColumnType("bytea");
 
-                    b.Property<string>("ImageName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Url")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.ToTable("UploadImages");
-                });
-
-            modelBuilder.Entity("EmployeeAdminPortal.Moddels.Entities.Employee", b =>
-                {
-                    b.HasOne("EmployeeAdminPortal.Models.Department", "Department")
-                        .WithMany("Employees")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Department");
-                });
-
-            modelBuilder.Entity("EmployeeAdminPortal.Models.Entity.Crop", b =>
-                {
-                    b.HasOne("EmployeeAdminPortal.Models.Entity.Farmer", "Farmer")
-                        .WithMany("Crops")
-                        .HasForeignKey("FarmerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Farmer");
                 });
 
             modelBuilder.Entity("EmployeeAdminPortal.Models.Entity.Farmer", b =>
@@ -236,28 +153,23 @@ namespace EmployeeAdminPortal.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Address");
-                });
-
-            modelBuilder.Entity("EmployeeAdminPortal.Models.Entity.UploadImage", b =>
-                {
-                    b.HasOne("EmployeeAdminPortal.Models.Entity.Farmer", null)
-                        .WithOne("UploadImage")
-                        .HasForeignKey("EmployeeAdminPortal.Models.Entity.UploadImage", "Id")
+                    b.HasOne("EmployeeAdminPortal.Models.Entity.Crop", "Crop")
+                        .WithMany()
+                        .HasForeignKey("CropId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
 
-            modelBuilder.Entity("EmployeeAdminPortal.Models.Department", b =>
-                {
-                    b.Navigation("Employees");
-                });
+                    b.HasOne("EmployeeAdminPortal.Models.Entity.UploadImage", "Image")
+                        .WithMany()
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-            modelBuilder.Entity("EmployeeAdminPortal.Models.Entity.Farmer", b =>
-                {
-                    b.Navigation("Crops");
+                    b.Navigation("Address");
 
-                    b.Navigation("UploadImage");
+                    b.Navigation("Crop");
+
+                    b.Navigation("Image");
                 });
 #pragma warning restore 612, 618
         }

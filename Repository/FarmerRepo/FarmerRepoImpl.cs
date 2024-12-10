@@ -24,40 +24,47 @@ namespace EmployeeAdminPortal.Repository.CrudRepo
         public async Task<IEnumerable<FarmerRTO>> GetFarmerAsync()
         {
             var farmers = await _dbContext.Farmers
-                .Include(f => f.Address)
-            
-                .Select(f => new FarmerRTO
-                {
-                    name = f.Name,
-                    email = f.Email,
-                    phoneNumber = f.PhoneNumber,
-                    Street = f.Address.Street,
-                    City = f.Address.City,
-                    State = f.Address.State,
-                    ZipCode = f.Address.ZipCode,
-                    //CropName = f.Crops.FirstOrDefault().CropName,
-                    //Season = f.Crops.FirstOrDefault().Season,
-                    //HarvestDate = f.Crops.FirstOrDefault().HarvestDate,
-                    //ImageName = f.UploadImage.ImageName
-                })
-                .ToListAsync();
+            //.Include(f => f.Address)
+
+            .Select(f => new FarmerRTO
+            {
+                name = f.Name,
+                email = f.Email,
+                phoneNumber = f.PhoneNumber,
+                //Street = f.Address.Street,
+                //City = f.Address.City,
+                //State = f.Address.State,
+                //ZipCode = f.Address.ZipCode,
+
+            })
+            .ToListAsync();
             return farmers;
         }
 
         public async Task<ActionResult<Echos>> AddFarmer(FarmerDTO farmerDto)
         {
-            // Check if farmer already exists using LINQ query
-            var existingFarmer = await (from farmer in _dbContext.Farmers
-                                        where farmer.PhoneNumber == farmerDto.PhoneNumber
-                                        select farmer)
-                                        .FirstOrDefaultAsync();
-
-            if (existingFarmer != null)
+            if (farmerDto == null || farmerDto.file == null || farmerDto.file.Length == 0)
             {
-                return Echos.BadRequest("Farmer already exists.");
+                return Echos.BadRequest("Invalid farmer data or file.");
             }
 
-            // Create and save Address
+            byte[] imageData;
+            using (var memoryStream = new MemoryStream())
+            {
+                await farmerDto.file.CopyToAsync(memoryStream);
+                imageData = memoryStream.ToArray();
+            }
+
+            var uploadImageEntity = new UploadImage
+            { 
+                ImageData = imageData,
+                Url = $"/uploads/{farmerDto.file.FileName}" 
+            };
+
+            _dbContext.UploadImages.Add(uploadImageEntity);
+            await _dbContext.SaveChangesAsync();
+
+
             var newAddress = new Address
             {
                 Street = farmerDto.Street,
@@ -68,66 +75,49 @@ namespace EmployeeAdminPortal.Repository.CrudRepo
             _dbContext.Addresses.Add(newAddress);
             await _dbContext.SaveChangesAsync();
 
-            // Create and save Farmer
+
+            var newCrop = new Crop
+            {
+                CropName = farmerDto.CropName,
+                Season = farmerDto.Season,
+                Quantity= farmerDto.Quantity,
+                HarvestDate = farmerDto.HarvestDate
+   
+            };
+            _dbContext.Crops.Add(newCrop);
+            await _dbContext.SaveChangesAsync();
+
             var newFarmer = new Farmer
             {
-                Name = farmerDto.Name, // Set the Name property
+                Name = farmerDto.Name,
                 PanNumber = farmerDto.PanNumber,
                 RegistrationDate = farmerDto.RegistrationDate,
                 Email = farmerDto.Email,
                 PhoneNumber = farmerDto.PhoneNumber,
                 BankAccountNumber = farmerDto.BankAccountNumber,
                 AadharNumber = farmerDto.AadharNumber,
-                AddressId = newAddress.Id, // Link to Address
-                Address = newAddress
-                //ImageId = uploadImage?.Id, // Link to UploadImage (optional)
-                //UploadImage = uploadImage // Optional if you are using image upload
+                ImageId = uploadImageEntity.Id,
+                AddressId = newAddress.Id,
+                CropId = newCrop.Id
+                
             };
+
             _dbContext.Farmers.Add(newFarmer);
             await _dbContext.SaveChangesAsync();
 
             return Echos.Ok("Farmer created successfully.");
         }
 
-
-        // Handle file upload
-        //UploadImage? uploadImage = null;
-        //if (farmerDto.File?.Length > 0)
-        //{
-        //    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "UploadedImages");
-        //    Directory.CreateDirectory(uploadsFolder);
-
-        //    var uniqueFileName = $"{Guid.NewGuid()}_{Path.GetFileName(farmerDto.File.FileName)}";
-        //    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-        //    // Save file to server
-        //    await using var stream = new FileStream(filePath, FileMode.Create);
-        //    await farmerDto.File.CopyToAsync(stream);
-
-        // Convert file to byte array
-        //byte[] imageData;
-        //await using (var ms = new MemoryStream())
-        //{
-        //    await farmerDto.File.CopyToAsync(ms);
-        //    imageData = ms.ToArray();
-        //}
-
-        // Create UploadImage record
-        //uploadImage = new UploadImage
-        //{
-        //    ImageName = farmerDto.File.FileName,
-        //    ImageData = imageData,
-        //    Url = filePath
-        //};
-        //_dbContext.UploadImages.Add(uploadImage);
-        //await _dbContext.SaveChangesAsync(); // Save to generate ImageId
     }
-
-    // Create and save Farmer
-
-
-
 }
+
+
+   
+
+
+
+
+
 
 
 
