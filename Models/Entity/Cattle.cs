@@ -10,8 +10,7 @@ namespace EmployeeAdminPortal.Models.Entity
         public string ? Breed { get; set; }
         public int Age { get; set; }
         public string ? HealthStatus { get; set; }
-        //public int FarmerId { get; set; }
-        //public Farmer? Farmer { get; set; } 
+       
 
 
 

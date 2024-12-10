@@ -12,11 +12,9 @@ namespace EmployeeAdminPortal.Models.Entity
         public string? Season { get; set; }
         public double Quantity { get; set; }
         public string? HarvestDate { get; set; }
-        public int FarmerId { get; set; }
+       
 
-        [JsonIgnore]
-        // Navigation property for Farmer
-        public Farmer? Farmer { get; set; }
+       
     }
 }
 

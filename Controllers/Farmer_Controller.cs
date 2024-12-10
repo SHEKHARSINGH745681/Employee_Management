@@ -10,7 +10,7 @@ using EmployeeAdminPortal.IRepo;
 namespace EmployeeAdminPortal.Controllers
 {
 
-    [Route("Api/[Controller]")]
+    [Route("Api/[controller]")]
     [ApiController]
     public class Farmer_Controller : ControllerBase
     {
@@ -22,7 +22,7 @@ namespace EmployeeAdminPortal.Controllers
         }
 
         [HttpGet]
-        [Route("/farmer")]
+        [Route("/Getfarmer")]
         public async Task<ActionResult<Echos>> GetAllFarmer()
         {
             var farmers = await _Ifarmer.GetFarmerAsync();
@@ -31,12 +31,13 @@ namespace EmployeeAdminPortal.Controllers
         }
  
         [HttpPost]
-        [Route("/farmer")]
-        public async Task<ActionResult<Echos>> AddFarmer([FromBody] FarmerDTO farmerDto)
+        [Route("/Addfarmer")]
+        public async Task<ActionResult<Echos>> AddFarmer([FromForm] FarmerDTO farmerDto)
         {
             var result = await _Ifarmer.AddFarmer(farmerDto);
             return result;
         }
 
+        
     }
 }

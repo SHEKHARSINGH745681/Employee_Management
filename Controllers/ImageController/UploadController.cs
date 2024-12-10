@@ -3,7 +3,9 @@ using EmployeeAdminPortal.Data;
 using EmployeeAdminPortal.DTO;
 using EmployeeAdminPortal.Echo;
 using EmployeeAdminPortal.Models;
+using EmployeeAdminPortal.Models.Entity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,17 +31,18 @@ namespace EmployeeAdminPortal.Controllers.Image
         }
 
         [HttpPost("UploadImage")]
-        public async Task<ActionResult<Echos>> UploadImage([FromForm] UploadImageDTO uploadImage)
+        public async Task<ActionResult<Echos>> UploadImage([FromForm] UploadImage uploadImage)
         {
-            if (uploadImage.file?.Length <= 0)
+            if (uploadImage.File?.Length <= 0)
                 return Echos.BadRequest("No file provided or the file is empty.");
 
-            const long maxFileSize = 10 * 1024 * 1024;
-            if (uploadImage.file.Length > maxFileSize)
+            const long maxFileSize = 10 * 1024 * 1024; // 10 MB in bytes
+
+            if (uploadImage.File.Length > maxFileSize)
                 return Echos.BadRequest("File size greater than 10 MB limit.");
 
             var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
-            var fileExtension = Path.GetExtension(uploadImage.file.FileName).ToLowerInvariant();
+            var fileExtension = Path.GetExtension(uploadImage.File.FileName).ToLowerInvariant();
 
             if (!allowedExtensions.Contains(fileExtension))
                 return Echos.BadRequest("Invalid file type. Only JPG, PNG, and GIF are allowed.");
@@ -51,27 +54,35 @@ namespace EmployeeAdminPortal.Controllers.Image
             var filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
             await using var stream = new FileStream(filePath, FileMode.Create);
-            await uploadImage.file.CopyToAsync(stream);
+            await uploadImage.File.CopyToAsync(stream);
 
-            var fileSize = new FileInfo(filePath).Length;
-
-            // Convert bytes to a more readable format like KB, MB, etc.
-            var fileSizeFormatted = FormatFileSize(fileSize);
+            byte[] imageData = null;
+            if (uploadImage.File.Length > 0)
+            {
+                await using (var ms = new MemoryStream())
+                {
+                    await uploadImage.File.CopyToAsync(ms);
+                    imageData = ms.ToArray();
+                }
+            }
 
             var uploadImageEntity = new UploadImage
             {
                 ImageName = uploadImage.ImageName,
+                ImageData = imageData,
                 Url = filePath
             };
 
             _dbContext.UploadImages.Add(uploadImageEntity);
             await _dbContext.SaveChangesAsync();
 
+            var fileSizeInBytes = imageData.Length;
+
             return Echos.Ok(new
             {
                 Message = "Image uploaded successfully.",
                 FilePath = filePath,
-                FileSize = fileSizeFormatted 
+                FileSizeInBytes = imageData
             });
         }
 
@@ -88,21 +99,16 @@ namespace EmployeeAdminPortal.Controllers.Image
 
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "UploadedImages", Path.GetFileName(Image.Url));
 
-            //if (!MimeTypeProvider.TryGetContentType(filePath, out var mimeType))
-            //{
-            //    mimeType = "application/octet-stream";
-            //}
-
             var fileBytes = await System.IO.File.ReadAllBytesAsync(filePath);
             var fileExtension = Path.GetExtension(filePath).ToLowerInvariant();
 
             return File(fileBytes, "application/octet-stream", $"{Image.ImageName}{fileExtension}");
         }
-
-
     }
-
-    
 }
+
+
+
+
 
 

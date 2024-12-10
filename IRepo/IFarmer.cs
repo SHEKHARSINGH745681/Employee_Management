@@ -10,7 +10,6 @@ namespace EmployeeAdminPortal.Repository.CrudRepo
     public interface IFarmer
     {
         Task<ActionResult<Echos>> AddFarmer(FarmerDTO farmerDto);
-     
         Task<IEnumerable<FarmerRTO>> GetFarmerAsync();
     }
 }

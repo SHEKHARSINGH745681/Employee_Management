@@ -5,7 +5,7 @@
 namespace EmployeeAdminPortal.Migrations
 {
     /// <inheritdoc />
-    public partial class Add4 : Migration
+    public partial class Add2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

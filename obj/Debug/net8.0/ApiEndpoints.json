@@ -1,5 +1,111 @@
 [
   {
+    "ContainingType": "EmployeeAdminPortal.Controllers.Farmer_Controller",
+    "Method": "AddFarmer",
+    "RelativePath": "Addfarmer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PhoneNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PanNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "RegistrationDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BankAccountNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "AadharNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CropName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Season",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Quantity",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "HarvestDate",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Street",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "City",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "State",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ZipCode",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CropId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "CattleId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EmployeeAdminPortal.Echo.Echos",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "EmployeeAdminPortal.Controllers.Image.UploadController",
     "Method": "GetImage",
     "RelativePath": "api/Upload/GetImage/{id}",
@@ -16,75 +122,13 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "EmployeeAdminPortal.Controllers.Image.UploadController",
-    "Method": "UploadImage",
-    "RelativePath": "api/Upload/UploadImage",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "ImageName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "EmployeeId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "file",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "EmployeeAdminPortal.Echo.Echos",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "EmployeeAdminPortal.Controllers.Farmer_Controller",
     "Method": "GetAllFarmer",
-    "RelativePath": "farmer",
+    "RelativePath": "Getfarmer",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "EmployeeAdminPortal.Echo.Echos",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "EmployeeAdminPortal.Controllers.Farmer_Controller",
-    "Method": "AddFarmer",
-    "RelativePath": "farmer",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "farmerDto",
-        "Type": "EmployeeAdminPortal.DTO.FarmerDTO",
-        "IsRequired": true
-      }
-    ],
     "ReturnTypes": [
       {
         "Type": "EmployeeAdminPortal.Echo.Echos",

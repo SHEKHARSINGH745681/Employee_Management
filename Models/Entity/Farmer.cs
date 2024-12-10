@@ -14,11 +14,21 @@ namespace EmployeeAdminPortal.Models.Entity
         public string? AadharNumber { get; set; }
         public string? PanNumber { get; set; }
 
-        public int AddressId { get; set; } // FK to Address
-        public Address? Address { get; set; } // Navigation Property to Address
 
-        // Navigation Property for related Crops
-        public List<Crop> Crops { get; set; } = new List<Crop>();
+        //F.K
+        public int? ImageId { get; set; }
+        public int AddressId { get; set; }
+        public int CropId { get; set; }
+        public int CattleId { get; set; }
+
+        //Navigation
+        public Address? Address { get; set; }
+        public UploadImage? UploadImage { get; set; }
+        public Crop? Crop { get; set; }
+        public Cattle? Cattle { get; set; } 
+
+
+      
     }
 
     
