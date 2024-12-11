@@ -12,7 +12,7 @@ namespace EmployeeAdminPortal.Models.Entity
         public int Id { get; set; }
         public byte[] ImageData { get; set; }
         public string? Url { get; set; }
-
+        public bool IsDeleted { get; set; } // Add this field
         [NotMapped]
         public IFormFile? File { get; set; } // Not mapped to the database
 

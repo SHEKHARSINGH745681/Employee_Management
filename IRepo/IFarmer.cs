@@ -11,5 +11,8 @@ namespace EmployeeAdminPortal.Repository.CrudRepo
     {
         Task<ActionResult<Echos>> AddFarmer(FarmerDTO farmerDto);
         Task<IEnumerable<FarmerRTO>> GetFarmerAsync();
+
+        Task<ActionResult<Echos>> DeleteFarmerAsync(int farmerId);
+
     }
 }

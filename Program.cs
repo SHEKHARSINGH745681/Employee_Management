@@ -1,30 +1,57 @@
 using EmployeeAdminPortal.Data;
 using EmployeeAdminPortal.IRepo;
 using EmployeeAdminPortal.Repository;
+using EmployeeAdminPortal.Repository.AuthRepo;
 using EmployeeAdminPortal.Repository.CrudRepo;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["Jwt:SecretKey"])),
+            RoleClaimType = ClaimTypes.Role  // This ensures roles are correctly validated
+        };
+    });
 
-// Add services to the container.
+
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
+   // options.AddPolicy("UserPolicy", policy => policy.RequireRole("User"));
+});
+
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//this way application db context in the main file
 builder.Services.AddDbContext<ApplicationDbContext>(options => 
 options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
+
 builder.Services.AddScoped<EmpRepo, RepositoryImpl>();
-builder.Services.AddScoped<IDepRepo, DepRepo>();
-builder.Services.AddScoped<IDispatchRepo, DispatchRepoImpl>();
 builder.Services.AddScoped<IFarmer, FarmerRepoImpl>();
+builder.Services.AddScoped<IAuthRepo, AuthRepoImpl>();
+
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -35,7 +62,9 @@ app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication(); 
 app.UseAuthorization();
+
 
 app.MapControllers();
 

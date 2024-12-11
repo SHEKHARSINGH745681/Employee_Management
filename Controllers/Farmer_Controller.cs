@@ -5,7 +5,7 @@ using EmployeeAdminPortal.Repository.CrudRepo;
 using Microsoft.AspNetCore.Mvc;
 using EmployeeAdminPortal.Echo;
 using EmployeeAdminPortal.RTO;
-using EmployeeAdminPortal.IRepo;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EmployeeAdminPortal.Controllers
 {
@@ -21,15 +21,15 @@ namespace EmployeeAdminPortal.Controllers
             this._Ifarmer = _Ifarmer;
         }
 
-        //[HttpGet]
-        //[Route("/Getfarmer")]
-        //public async Task<ActionResult<Echos>> GetAllFarmer()
-        //{
-        //    var farmers = await _Ifarmer.GetFarmerAsync();
+        [HttpGet]
+        [Route("/Getfarmer")]
+        public async Task<ActionResult<Echos>> GetAllFarmer()
+        {
+            var farmers = await _Ifarmer.GetFarmerAsync();
 
-        //    return Echos.Ok(farmers);
-        //}
- 
+            return Echos.Ok(farmers);
+        }
+
         [HttpPost]
         [Route("/Addfarmer")]
         public async Task<ActionResult<Echos>> AddFarmer([FromForm] FarmerDTO farmerDto)
@@ -38,7 +38,13 @@ namespace EmployeeAdminPortal.Controllers
             return result;
         }
 
-
-        
+        [Authorize(Roles = "Admin")]
+        [HttpDelete]
+        [Route("/DeleteFarmer/{farmerId}")]
+        public async Task<ActionResult<Echos>> DeleteFarmer(int farmerId)
+        {
+            var result = await _Ifarmer.DeleteFarmerAsync(farmerId);
+            return result;
+        }
     }
 }

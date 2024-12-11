@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Projects\\Employee_Management\\wwwroot\\uploads\\08ac6326-e490-4f0b-99a9-e2a069b6498e_Rahul.png",
+      "PackagePath": "staticwebassets\\uploads\\08ac6326-e490-4f0b-99a9-e2a069b6498e_Rahul.png"
+    },
+    {
+      "Id": "D:\\Projects\\Employee_Management\\wwwroot\\uploads\\1e8d47ea-d620-4e06-b253-ac909f805c66_Rahul.png",
+      "PackagePath": "staticwebassets\\uploads\\1e8d47ea-d620-4e06-b253-ac909f805c66_Rahul.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.EmployeeAdminPortal.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.EmployeeAdminPortal.props",
+      "PackagePath": "build\\EmployeeAdminPortal.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.EmployeeAdminPortal.props",
+      "PackagePath": "buildMultiTargeting\\EmployeeAdminPortal.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.EmployeeAdminPortal.props",
+      "PackagePath": "buildTransitive\\EmployeeAdminPortal.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

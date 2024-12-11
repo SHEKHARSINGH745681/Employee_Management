@@ -43,26 +43,6 @@
         "IsRequired": false
       },
       {
-        "Name": "CropName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Season",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Quantity",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "HarvestDate",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
         "Name": "Street",
         "Type": "System.String",
         "IsRequired": false
@@ -83,13 +63,28 @@
         "IsRequired": false
       },
       {
-        "Name": "CropId",
+        "Name": "CropName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Season",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Quantity",
         "Type": "System.Int32",
         "IsRequired": false
       },
       {
-        "Name": "CattleId",
-        "Type": "System.Int32",
+        "Name": "HarvestDate",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
       }
     ],
@@ -106,20 +101,82 @@
     ]
   },
   {
-    "ContainingType": "EmployeeAdminPortal.Controllers.Image.UploadController",
-    "Method": "GetImage",
-    "RelativePath": "api/Upload/GetImage/{id}",
-    "HttpMethod": "GET",
+    "ContainingType": "EmployeeAdminPortal.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "Api/Auth/Login",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "loginDto",
+        "Type": "EmployeeAdminPortal.DTO.LoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EmployeeAdminPortal.Controllers.AuthController",
+    "Method": "Register",
+    "RelativePath": "Api/Auth/Register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registerDto",
+        "Type": "EmployeeAdminPortal.DTO.RegisterDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EmployeeAdminPortal.Controllers.Farmer_Controller",
+    "Method": "DeleteFarmer",
+    "RelativePath": "DeleteFarmer/{farmerId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "farmerId",
         "Type": "System.Int32",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "EmployeeAdminPortal.Echo.Echos",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "EmployeeAdminPortal.Controllers.Farmer_Controller",

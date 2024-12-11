@@ -1,11 +1,58 @@
 {
   "Version": 1,
-  "Hash": "Rxs+PCmoHFYcImqZZns/mTzivOlZhuyvdyLoyZZpqOQ=",
+  "Hash": "E/9MPGCOUETH//oHufmVxa06rOsxsT71+zWiHqnVZe0=",
   "Source": "EmployeeAdminPortal",
   "BasePath": "_content/EmployeeAdminPortal",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "EmployeeAdminPortal\\wwwroot",
+      "Source": "EmployeeAdminPortal",
+      "ContentRoot": "D:\\Projects\\Employee_Management\\wwwroot\\",
+      "BasePath": "_content/EmployeeAdminPortal",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Projects\\Employee_Management\\wwwroot\\uploads\\08ac6326-e490-4f0b-99a9-e2a069b6498e_Rahul.png",
+      "SourceId": "EmployeeAdminPortal",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Projects\\Employee_Management\\wwwroot\\",
+      "BasePath": "_content/EmployeeAdminPortal",
+      "RelativePath": "uploads/08ac6326-e490-4f0b-99a9-e2a069b6498e_Rahul.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\08ac6326-e490-4f0b-99a9-e2a069b6498e_Rahul.png"
+    },
+    {
+      "Identity": "D:\\Projects\\Employee_Management\\wwwroot\\uploads\\1e8d47ea-d620-4e06-b253-ac909f805c66_Rahul.png",
+      "SourceId": "EmployeeAdminPortal",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Projects\\Employee_Management\\wwwroot\\",
+      "BasePath": "_content/EmployeeAdminPortal",
+      "RelativePath": "uploads/1e8d47ea-d620-4e06-b253-ac909f805c66_Rahul.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\1e8d47ea-d620-4e06-b253-ac909f805c66_Rahul.png"
+    }
+  ]
 }

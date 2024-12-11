@@ -13,6 +13,7 @@ namespace EmployeeAdminPortal.Models.Entity
         public string? BankAccountNumber { get; set; }
         public string? AadharNumber { get; set; }
         public string? PanNumber { get; set; }
+        public bool IsDeleted { get; set; } = false; //by default false
 
         public int ImageId { get; set; } // Foreign key for the uploaded image
         public UploadImage Image { get; set; } // Navigation property

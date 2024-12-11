@@ -24,18 +24,23 @@ namespace EmployeeAdminPortal.Repository.CrudRepo
         public async Task<IEnumerable<FarmerRTO>> GetFarmerAsync()
         {
             var farmers = await _dbContext.Farmers
-            //.Include(f => f.Address)
-
-            .Select(f => new FarmerRTO
-            {
+             .Include(f => f.Address)
+             .Include(a => a.Crop)
+             .Include(c => c.Image)
+             .Select(f => new FarmerRTO
+             {
                 name = f.Name,
                 email = f.Email,
                 phoneNumber = f.PhoneNumber,
-                //Street = f.Address.Street,
-                //City = f.Address.City,
-                //State = f.Address.State,
-                //ZipCode = f.Address.ZipCode,
-
+                Street = f.Address.Street,
+                City = f.Address.City,
+                State = f.Address.State,
+                ZipCode = f.Address.ZipCode,
+                CropName= f.Crop.CropName,
+                Season = f.Crop.Season,
+                 Url = f.Image.Url,
+                ImageData =f.Image.ImageData
+               
             })
             .ToListAsync();
             return farmers;
@@ -48,22 +53,23 @@ namespace EmployeeAdminPortal.Repository.CrudRepo
                 return Echos.BadRequest("Invalid farmer data or file.");
             }
 
+            var fileExtension = Path.GetExtension(farmerDto.file.FileName);
+            var uniqueFileName = $"{Guid.NewGuid()}_{Path.GetFileNameWithoutExtension(farmerDto.file.FileName)}{fileExtension}";
+
             byte[] imageData;
             using (var memoryStream = new MemoryStream())
             {
                 await farmerDto.file.CopyToAsync(memoryStream);
                 imageData = memoryStream.ToArray();
             }
-
             var uploadImageEntity = new UploadImage
-            { 
+            {
                 ImageData = imageData,
-                Url = $"/uploads/{farmerDto.file.FileName}" 
+                Url = $"/uploads/{uniqueFileName}" 
             };
 
             _dbContext.UploadImages.Add(uploadImageEntity);
             await _dbContext.SaveChangesAsync();
-
 
             var newAddress = new Address
             {
@@ -106,6 +112,41 @@ namespace EmployeeAdminPortal.Repository.CrudRepo
             await _dbContext.SaveChangesAsync();
 
             return Echos.Ok("Farmer created successfully.");
+        }
+
+        public async Task<ActionResult<Echos>> DeleteFarmerAsync(int farmerId)
+        {
+            var farmer = await _dbContext.Farmers
+            .Include(f => f.Address)
+            .Include(f => f.Crop)
+            .Include(f => f.Image)
+            .FirstOrDefaultAsync(f => f.Id == farmerId);
+
+            if (farmer == null || farmer.IsDeleted)
+            {
+                return Echos.NotFound("Farmer not found or already deleted.");
+            }
+
+            farmer.IsDeleted = true;
+
+            if (farmer.Address != null)
+            {
+                farmer.Address.IsDeleted = true;
+            }
+
+            if (farmer.Crop != null)
+            {
+                farmer.Crop.IsDeleted = true;
+            }
+
+            if (farmer.Image != null)
+            {
+                farmer.Image.IsDeleted = true;
+            }
+
+            await _dbContext.SaveChangesAsync();
+
+            return Echos.Ok("Farmer Deleted successfully.");
         }
 
     }

@@ -12,9 +12,10 @@ namespace EmployeeAdminPortal.Models.Entity
         public string? Season { get; set; }
         public double Quantity { get; set; }
         public string? HarvestDate { get; set; }
-       
+        public bool IsDeleted { get; set; } // Add this field
 
-       
+
+
     }
 }
 
