@@ -22,18 +22,15 @@ namespace EmployeeAdminPortal.Controllers
 
         [HttpPost]
         [Route("Login")]
-        public async Task<ActionResult<string>> Login([FromBody] LoginDTO loginDto)
+        public async Task<ActionResult<AuthResponseDTO>> Login([FromBody] LoginDTO loginDto)
         {
-            var token = await _IAuthRepo.AuthenticateAsync(loginDto);
-            if (token == null)
+            var authResponse = await _IAuthRepo.AuthenticateAsync(loginDto);
+            if (authResponse == null)
             {
                 return Unauthorized("Invalid username or password.");
             }
-            return Ok(new { Token = token });
+            return Ok(authResponse);
         }
-
-
-
 
         [HttpPost]
         [Route("Register")]

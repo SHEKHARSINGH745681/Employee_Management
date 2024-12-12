@@ -4,7 +4,7 @@ namespace EmployeeAdminPortal.IRepo
 {
     public interface IAuthRepo
     {
-        Task<string> AuthenticateAsync(LoginDTO loginDto);
+        Task<AuthResponseDTO> AuthenticateAsync(LoginDTO loginDto);
         Task<string> RegisterAsync(RegisterDTO registerDto);
     }
 }

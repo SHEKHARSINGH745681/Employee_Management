@@ -39,7 +39,7 @@ namespace EmployeeAdminPortal.Repository.CrudRepo
                 CropName= f.Crop.CropName,
                 Season = f.Crop.Season,
                  Url = f.Image.Url,
-                ImageData =f.Image.ImageData
+               // ImageData =f.Image.ImageData
                
             })
             .ToListAsync();

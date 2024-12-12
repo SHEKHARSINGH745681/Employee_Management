@@ -3,6 +3,7 @@ using EmployeeAdminPortal.DTO;
 using EmployeeAdminPortal.IRepo;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -24,7 +25,7 @@ namespace EmployeeAdminPortal.Repository.AuthRepo
             _roleManager = roleManager;
         }
 
-        public async Task<string> AuthenticateAsync(LoginDTO loginDto)
+        public async Task<AuthResponseDTO> AuthenticateAsync(LoginDTO loginDto)
         {
             // Find the user by username (or email)
             var user = await _userManager.FindByNameAsync(loginDto.Username);
@@ -41,9 +42,16 @@ namespace EmployeeAdminPortal.Repository.AuthRepo
             }
 
             var token = GenerateJwtToken(user);
-            return token;
-        }
+            var roles = await _userManager.GetRolesAsync(user); // Get user roles
 
+            return new AuthResponseDTO
+            {
+                Token = token,
+                Username = user.UserName,
+                UserId = user.Id,
+                UserRole = roles.FirstOrDefault() // Assuming one role per user
+            };
+        }
         private string GenerateJwtToken(IdentityUser user)
         {
             var claims = new[]
@@ -96,6 +104,8 @@ namespace EmployeeAdminPortal.Repository.AuthRepo
 
             return result.Errors.FirstOrDefault()?.Description ?? "An error occurred during user registration.";
         }
+
+        
     }
 }
 

@@ -12,7 +12,7 @@ namespace EmployeeAdminPortal.RTO
         public String? ZipCode { get; set; }
         public string? CropName { get; set; }
         public string? Season { get; set; }
-        public byte[] ImageData { get; set; }
+       // public byte[] ImageData { get; set; }
         public string? Url { get; set; }
 
 

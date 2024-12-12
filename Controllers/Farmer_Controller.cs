@@ -20,7 +20,7 @@ namespace EmployeeAdminPortal.Controllers
         {
             this._Ifarmer = _Ifarmer;
         }
-
+        
         [HttpGet]
         [Route("/Getfarmer")]
         public async Task<ActionResult<Echos>> GetAllFarmer()
@@ -38,7 +38,7 @@ namespace EmployeeAdminPortal.Controllers
             return result;
         }
 
-        [Authorize(Roles = "Admin")]
+       
         [HttpDelete]
         [Route("/DeleteFarmer/{farmerId}")]
         public async Task<ActionResult<Echos>> DeleteFarmer(int farmerId)
